@@ -59,6 +59,10 @@ module MediaInfo
       @bit_rate_maximum = value.to_i
     end
 
+    def channel_s_=(value)
+      @channel_s_ = value.to_i
+    end
+
     def sampling_rate=(value)
       @sampling_rate = value.to_i
     end
