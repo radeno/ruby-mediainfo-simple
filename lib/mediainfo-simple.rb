@@ -9,23 +9,20 @@ require 'mediainfo-simple/streams/general'
 require 'mediainfo-simple/streams/menu'
 require 'mediainfo-simple/streams/other'
 
-
 class MediaInfo
-
   attr_accessor :streams
 
-  def initialize filename
+  def initialize(filename)
     # we check that the file exist
-    raise ArgumentError, "give the filename as a parameter (got nil)" if filename == nil
-    raise ArgumentError, "filename must be a string" if ! filename.is_a? String
-    filename = File.expand_path filename
+    raise ArgumentError, 'give the filename as a parameter (got nil)' if filename.nil?
+    raise ArgumentError, 'filename must be a string' if ! filename.is_a? String
+    filename = File.expand_path(filename)
     raise ArgumentError, "#{filename} does not exist" if ! File.exist? filename
-    
+
     # we parse the file
     @streams = []
     MediaInfoParser.new filename, self
   end
-
 
   # return true if there is a general stream, false otherwise
   def general?
@@ -96,6 +93,4 @@ class MediaInfo
   def other
     @streams.select { |stream| stream.is_a? OtherStream }
   end
-
 end
-

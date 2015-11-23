@@ -1,39 +1,41 @@
 class AudioStream < Stream
   attr_accessor :duration
-  attr_accessor :language
-  
-  attr_accessor :sampling_count
-  attr_accessor :sampling_rate
-  attr_accessor_alias :sample_rate, :sampling_rate
+  attr_accessor :duration_string
+  attr_accessor :duration_string1
+  attr_accessor :duration_string2
+  attr_accessor :duration_string3
+  attr_accessor :duration_string4
+  attr_accessor :duration_string5
 
-  attr_accessor :stream_size
   attr_accessor :bit_rate
+  attr_accessor :bit_rate_string
   attr_accessor :bit_rate_mode
-  attr_accessor :interleave_duration
+  attr_accessor :bit_rate_mode_string
+  attr_accessor :bit_rate_minimum
+  attr_accessor :bit_rate_minimum_string
+  attr_accessor :bit_rate_nominal
+  attr_accessor :bit_rate_nominal_string
+  attr_accessor :bit_rate_maximum
+  attr_accessor :bit_rate_maximum_string
+  attr_accessor :bit_rate_encoded
+  attr_accessor :bit_rate_encoded_string
 
-  attr_accessor :resolution
-  attr_accessor_alias :sample_bit_depth, :resolution
-
-  attr_accessor :format
-  attr_accessor :format_profile
-  attr_accessor :format_version
-  attr_accessor :format_info
-  attr_accessor :format_settings_sbr
-  attr_accessor :format_settings_endianness
-  attr_accessor :format_settings_sign
-  attr_accessor :codec_id
-  attr_accessor :codec_info
-  attr_accessor :codec
-  attr_accessor :codec_id_hint
+  attr_accessor :channel_s_
+  attr_accessor :channel_s__string
   attr_accessor :channel_positions
+  attr_accessor :channel_positions_string2
+  attr_accessor :channel_layout
+  attr_accessor :channel_layout_id
+  attr_accessor_alias :channels, :channel_s_
+  attr_accessor_alias :channels_string, :channel_s__string
 
-  attr_accessor :channel_s
-  def stereo?; channels == 2; end
-  def mono?;   channels == 1; end
+  attr_accessor :sampling_rate
+  attr_accessor :sampling_rate_string
+  attr_accessor :frame_count
+
+  attr_accessor :compression_mode
+  attr_accessor :compression_mode_string
 
   attr_accessor :encoded_date
   attr_accessor :tagged_date
-
-  attr_accessor :menu_id
 end
-
