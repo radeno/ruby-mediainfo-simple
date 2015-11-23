@@ -1,2 +1,4 @@
-class TextStream < Stream
+module MediaInfo
+  class TextStream < Stream
+  end
 end
