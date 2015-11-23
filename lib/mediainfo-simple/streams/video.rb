@@ -54,11 +54,17 @@ class VideoStream < Stream
   attr_accessor :bit_depth
   attr_accessor :bit_depth_string
 
+  attr_accessor :scan_type
+  attr_accessor :scan_type_string
+  attr_accessor :scan_order
+  attr_accessor :scan_order_string
+
   attr_accessor :compression_mode
   attr_accessor :compression_mode_string
   attr_accessor :compression_ratio
-  attr_accessor :bits__pixel_frame
-  attr_accessor_alias :bits_pixel_fram, :bits__pixel_frame
+
+  attr_accessor :bits__pixel_frame # "Bits-(Pixel*Frame)"
+  attr_accessor_alias :bits_pixel_frame, :bits__pixel_frame
 
   attr_accessor :format_settings_bvop
   attr_accessor :format_settings_bvop_string

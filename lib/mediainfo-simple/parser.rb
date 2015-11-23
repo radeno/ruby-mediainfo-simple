@@ -54,7 +54,7 @@ class MediaInfoParser
         tag_name = c.name.strip # remove whitespaces at the beginning and the end
         # tag_name = tag_name.gsub(/ +/, '_') # we replace spaces by '_'
         # we replace characters forbidden in Ruby method names by '_':
-        # tag_name = tag_name.gsub(/[\(\)\{\}\[\]\*\/\\,;\.:\+=\-\^\$\!\?\|@#\&"'`]+/, '_')
+        tag_name = tag_name.gsub(/[\(\)\{\}\[\]\*\/\\,;\.:\+=\-\^\$\!\?\|@#\&"'`]+/, '_')
         # tag_name = tag_name.gsub(/^_+/, '') # remove '_' at the beginning
         # tag_name = tag_name.gsub(/_+$/, '') # remove '_' at the end
         tag_name = tag_name.gsub(/_+/, '_') # we replace several '_' following by a single one
