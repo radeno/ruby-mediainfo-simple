@@ -1,17 +1,19 @@
 module MediaInfo
   class GeneralStream < Stream
-    attr_accessor :general_count
-    attr_accessor :video_count
-    attr_accessor :audio_count
-    attr_accessor :text_count
-    attr_accessor :other_count
-    attr_accessor :image_count
-    attr_accessor :menu_count
+    attr_reader :general_count
+    attr_reader :video_count
+    attr_reader :audio_count
+    attr_reader :text_count
+    attr_reader :other_count
+    attr_reader :image_count
+    attr_reader :menu_count
 
-    attr_accessor :header_size
-    attr_accessor :data_size
-    attr_accessor :footer_size
-    attr_accessor :is_streamable
+    attr_reader :header_size
+    attr_reader :data_size
+    attr_reader :footer_size
+    attr_reader :is_streamable
+
+    private
 
     def general_count=(value)
       @general_count = value.to_i

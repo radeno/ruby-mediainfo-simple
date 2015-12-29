@@ -2,7 +2,7 @@ require 'rexml/document'
 
 module MediaInfo
   class MediaInfoParser
-    attr_accessor :mediainfo_path_verified
+    attr_reader :mediainfo_path_verified
 
     def initialize(filename, mediainfo_object, mediainfo_path = nil)
       # we check that MediaInfo CLI is installed
@@ -47,35 +47,33 @@ module MediaInfo
       # puts "#{raw_xml_response}"
       REXML::Document.new(raw_xml_response).elements.each('/Mediainfo/File/track') { |track|
         # we create a "Stream" object, depending on the Stream type
-        stream = StreamFactory.create(track.attributes['type'])
 
+        params = {}
         # we get each tag about the stream
         track.children.select { |n| n.is_a? REXML::Element }.each do |c|
-          # we convert the tag name to a ruby-attribute-compatible name
-          tag_name = c.name.strip # remove whitespaces at the beginning and the end
-          # tag_name = tag_name.gsub(/ +/, '_') # we replace spaces by '_'
-          # we replace characters forbidden in Ruby method names by '_':
-          tag_name = tag_name.gsub(/[\(\)\{\}\[\]\*\/\\,;\.:\+=\-\^\$\!\?\|@#\&"'`]+/, '_')
-          # tag_name = tag_name.gsub(/^_+/, '') # remove '_' at the beginning
-          # tag_name = tag_name.gsub(/_+$/, '') # remove '_' at the end
-          tag_name = tag_name.gsub(/_+/, '_') # we replace several '_' following by a single one
-          tag_name = tag_name.gsub(/(.)([A-Z])/, '\1_\2') # add underscore between capital case
-          tag_name = tag_name.downcase
 
-          # if there is an attribute in the Stream class,
-          # that has the same name as the tag name, we set it with the tag content
-          if stream.class.method_defined?("#{tag_name}=")
-            # we call the method which name is the content of the string tag_name
-            stream.send "#{tag_name}=", c.text.strip
-          else
-            # to print the tag ignored, in case we want to support them
-            # puts "#{stream.class}: tag ignored: #{tag_name}, #{c.text.strip}"
-          end
+          tag_name = convert_element(c.name)
+
+          params[tag_name.to_sym] = c.text.strip
         end
+
+        stream = StreamFactory.create(track.attributes['type'], params)
 
         # we add the Stream objects to the MediaInfo object
         mediainfo_object.streams << stream
       }
+    end
+
+    def convert_element(tag_name)
+      # we convert the tag name to a ruby-attribute-compatible name
+      tag_name = tag_name.strip # remove whitespaces at the beginning and the end
+      # we replace characters forbidden in Ruby method names by '_':
+      tag_name = tag_name.gsub(/[\(\)\{\}\[\]\*\/\\,;\.:\+=\-\^\$\!\?\|@#\&"'`]+/, '_')
+      tag_name = tag_name.gsub(/(.)([A-Z])/, '\1_\2') # add underscore between capital case
+      tag_name = tag_name.gsub(/_+/, '_') # we replace several '_' following by a single one
+      tag_name = tag_name.downcase
+
+      tag_name
     end
   end
 end

@@ -1,5 +1,5 @@
 module MediaInfo
   class OtherStream < Stream
-    attr_accessor :type
+    attr_reader :type
   end
 end

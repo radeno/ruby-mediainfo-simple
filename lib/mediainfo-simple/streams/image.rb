@@ -1,18 +1,20 @@
 module MediaInfo
   class ImageStream < Stream
-    attr_accessor :width
-    attr_accessor :width_string
-    attr_accessor :height
-    attr_accessor :height_string
+    attr_reader :width
+    attr_reader :width_string
+    attr_reader :height
+    attr_reader :height_string
 
-    attr_accessor :color_space
-    attr_accessor :chroma_subsampling
+    attr_reader :color_space
+    attr_reader :chroma_subsampling
 
-    attr_accessor :bit_depth
-    attr_accessor :bit_depth_string
+    attr_reader :bit_depth
+    attr_reader :bit_depth_string
 
-    attr_accessor :compression_mode
-    attr_accessor :compression_mode_string
+    attr_reader :compression_mode
+    attr_reader :compression_mode_string
+
+    private
 
     def width=(value)
       @width = value.to_i

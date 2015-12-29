@@ -1,37 +1,38 @@
 module MediaInfo
   class MenuStream < Stream
-    attr_accessor :menu_id
-    attr_accessor :menu_id_string
+    attr_reader :menu_id
+    attr_reader :menu_id_string
 
-    attr_accessor :duration
-    attr_accessor :duration_string
-    attr_accessor :duration_string1
-    attr_accessor :duration_string2
-    attr_accessor :duration_string3
-    attr_accessor :duration_string4
-    attr_accessor :duration_string5
-    attr_accessor :duration_start
-    attr_accessor :duration_end
+    attr_reader :duration
+    attr_reader :duration_string
+    attr_reader :duration_string1
+    attr_reader :duration_string2
+    attr_reader :duration_string3
+    attr_reader :duration_string4
+    attr_reader :duration_string5
+    attr_reader :duration_start
+    attr_reader :duration_end
 
-    attr_accessor :delay
-    attr_accessor :delay_string
-    attr_accessor :delay_string1
-    attr_accessor :delay_string2
-    attr_accessor :delay_string3
-    attr_accessor :delay_string4
-    attr_accessor :delay_string5
-    attr_accessor :delay_settings
-    attr_accessor :delay_drop_frame
+    attr_reader :delay
+    attr_reader :delay_string
+    attr_reader :delay_string1
+    attr_reader :delay_string2
+    attr_reader :delay_string3
+    attr_reader :delay_string4
+    attr_reader :delay_string5
+    attr_reader :delay_settings
+    attr_reader :delay_drop_frame
 
-    attr_accessor :language
-    attr_accessor :language_string
-    attr_accessor :language_string1
-    attr_accessor :language_string2
-    attr_accessor :language_string3
-    attr_accessor :language_string4
-    attr_accessor :language_more
+    attr_reader :language
+    attr_reader :language_string
+    attr_reader :language_string1
+    attr_reader :language_string2
+    attr_reader :language_string3
+    attr_reader :language_string4
+    attr_reader :language_more
 
-    # convert from miliseconds to seconds
+    private
+
     def menu_id=(value)
       @menu_id = value.to_i
     end

@@ -1,43 +1,44 @@
 module MediaInfo
   class AudioStream < Stream
-    attr_accessor :duration
-    attr_accessor :duration_string
-    attr_accessor :duration_string1
-    attr_accessor :duration_string2
-    attr_accessor :duration_string3
-    attr_accessor :duration_string4
-    attr_accessor :duration_string5
+    attr_reader :duration
+    attr_reader :duration_string
+    attr_reader :duration_string1
+    attr_reader :duration_string2
+    attr_reader :duration_string3
+    attr_reader :duration_string4
+    attr_reader :duration_string5
 
-    attr_accessor :bit_rate
-    attr_accessor :bit_rate_string
-    attr_accessor :bit_rate_mode
-    attr_accessor :bit_rate_mode_string
-    attr_accessor :bit_rate_minimum
-    attr_accessor :bit_rate_minimum_string
-    attr_accessor :bit_rate_nominal
-    attr_accessor :bit_rate_nominal_string
-    attr_accessor :bit_rate_maximum
-    attr_accessor :bit_rate_maximum_string
+    attr_reader :bit_rate
+    attr_reader :bit_rate_string
+    attr_reader :bit_rate_mode
+    attr_reader :bit_rate_mode_string
+    attr_reader :bit_rate_minimum
+    attr_reader :bit_rate_minimum_string
+    attr_reader :bit_rate_nominal
+    attr_reader :bit_rate_nominal_string
+    attr_reader :bit_rate_maximum
+    attr_reader :bit_rate_maximum_string
 
-    attr_accessor :channel_s_
-    attr_accessor :channel_s__string
-    attr_accessor :channel_positions
-    attr_accessor :channel_positions_string2
-    attr_accessor :channel_layout
-    attr_accessor :channel_layout_id
-    attr_accessor_alias :channels, :channel_s_
-    attr_accessor_alias :channels_string, :channel_s__string
+    attr_reader :channel_s
+    attr_reader :channel_s_string
+    attr_reader :channel_positions
+    attr_reader :channel_positions_string2
+    attr_reader :channel_layout
+    attr_reader :channel_layout_id
+    alias_method :channels, :channel_s
+    alias_method :channels_string, :channel_s_string
 
-    attr_accessor :sampling_rate
-    attr_accessor :sampling_rate_string
-    attr_accessor :frame_count
+    attr_reader :sampling_rate
+    attr_reader :sampling_rate_string
+    attr_reader :frame_count
 
-    attr_accessor :compression_mode
-    attr_accessor :compression_mode_string
+    attr_reader :compression_mode
+    attr_reader :compression_mode_string
 
-    attr_accessor :encoded_date
-    attr_accessor :tagged_date
+    attr_reader :encoded_date
+    attr_reader :tagged_date
 
+    private
     # convert from miliseconds to seconds
     def duration=(value)
       @duration = value.to_i / 1000.0
@@ -59,8 +60,8 @@ module MediaInfo
       @bit_rate_maximum = value.to_i
     end
 
-    def channel_s_=(value)
-      @channel_s_ = value.to_i
+    def channel_s=(value)
+      @channel_s = value.to_i
     end
 
     def sampling_rate=(value)

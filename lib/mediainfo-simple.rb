@@ -11,7 +11,7 @@ require 'mediainfo-simple/streams/other'
 
 module MediaInfo
   class Base
-    attr_accessor :streams
+    attr_reader :streams
 
     def initialize(filename)
       # we check that the file exist
@@ -22,7 +22,7 @@ module MediaInfo
 
       # we parse the file
       @streams = []
-      MediaInfoParser.new filename, self
+      MediaInfoParser.new(filename, self)
     end
 
     # return true if there is a general stream, false otherwise

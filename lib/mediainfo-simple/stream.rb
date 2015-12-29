@@ -1,77 +1,86 @@
 module MediaInfo
   class Stream
-    # to create aliases (getter and setter method)
-    # for attributes defined with attr_accessor
-    def self.attr_accessor_alias(alias_name, alias_target)
-      alias_method alias_name, alias_target
-      alias_method "#{alias_name}=".to_sym, "#{alias_target}=".to_sym
+    attr_reader :count
+    attr_reader :status
+    attr_reader :stream_count
+    attr_reader :stream_kind
+    attr_reader :stream_kind_string
+    attr_reader :stream_kind_id
+    attr_reader :stream_kind_pos
+    attr_reader :stream_order
+    attr_reader :first_packet_order
+    attr_reader :inform
+    attr_reader :id
+    attr_reader :id_string
+    attr_reader :unique_id
+    attr_reader :unique_id_string
+
+    attr_reader :complete_name
+    attr_reader :folder_name
+    attr_reader :file_name
+    attr_reader :file_extension
+    attr_reader :complete_name_last
+    attr_reader :folder_name_last
+    attr_reader :file_name_last
+    attr_reader :file_extension_last
+
+    attr_reader :format
+    attr_reader :format_info
+    attr_reader :format_url
+    attr_reader :format_extensions
+    attr_reader :format_commercial
+    attr_reader :format_commercial_if_any
+    attr_reader :format_version
+    attr_reader :format_profile
+    attr_reader :format_compression
+    attr_reader :format_settings
+    attr_reader :internet_media_type
+
+    attr_reader :codec_id
+    attr_reader :codec_id_string
+    attr_reader :codec_id_info
+    attr_reader :codec_id_hint
+    attr_reader :codec_id_url
+    attr_reader :codec_id_description
+
+    attr_reader :file_size
+    attr_reader :file_size_string
+    attr_reader :file_size_string1
+    attr_reader :file_size_string2
+    attr_reader :file_size_string3
+    attr_reader :file_size_string4
+
+    attr_reader :file_created_date
+    attr_reader :file_created_date_local
+    attr_reader :file_modified_date
+    attr_reader :file_modified_date_local
+
+    attr_reader :stream_size
+    attr_reader :stream_size_string
+    attr_reader :stream_size_string1
+    attr_reader :stream_size_string2
+    attr_reader :stream_size_string3
+    attr_reader :stream_size_string4
+    attr_reader :stream_size_string5
+    attr_reader :stream_size_proportion
+
+    alias_method :stream_id, :id
+
+    def initialize(params = {})
+      klass = self.class
+
+      params.each do |key, value|
+        next unless klass.method_defined?("#{key}")
+
+        if klass.private_method_defined?("#{key}=")
+          self.send("#{key}=", value)
+        else
+          instance_variable_set("@#{key}", value)
+        end
+      end
     end
 
-    attr_accessor :count
-    attr_accessor :status
-    attr_accessor :stream_count
-    attr_accessor :stream_kind
-    attr_accessor :stream_kind_string
-    attr_accessor :stream_kind_id
-    attr_accessor :stream_kind_pos
-    attr_accessor :stream_order
-    attr_accessor :first_packet_order
-    attr_accessor :inform
-    attr_accessor :id
-    attr_accessor :id_string
-    attr_accessor :unique_id
-    attr_accessor :unique_id_string
-
-    attr_accessor :complete_name
-    attr_accessor :folder_name
-    attr_accessor :file_name
-    attr_accessor :file_extension
-    attr_accessor :complete_name_last
-    attr_accessor :folder_name_last
-    attr_accessor :file_name_last
-    attr_accessor :file_extension_last
-
-    attr_accessor :format
-    attr_accessor :format_info
-    attr_accessor :format_url
-    attr_accessor :format_extensions
-    attr_accessor :format_commercial
-    attr_accessor :format_commercial_if_any
-    attr_accessor :format_version
-    attr_accessor :format_profile
-    attr_accessor :format_compression
-    attr_accessor :format_settings
-    attr_accessor :internet_media_type
-
-    attr_accessor :codec_id
-    attr_accessor :codec_id_string
-    attr_accessor :codec_id_info
-    attr_accessor :codec_id_hint
-    attr_accessor :codec_id_url
-    attr_accessor :codec_id_description
-
-    attr_accessor :file_size
-    attr_accessor :file_size_string
-    attr_accessor :file_size_string1
-    attr_accessor :file_size_string2
-    attr_accessor :file_size_string3
-    attr_accessor :file_size_string4
-
-    attr_accessor :file_created_date
-    attr_accessor :file_created_date_local
-    attr_accessor :file_modified_date
-    attr_accessor :file_modified_date_local
-
-    attr_accessor :stream_size
-    attr_accessor :stream_size_string
-    attr_accessor :stream_size_string1
-    attr_accessor :stream_size_string2
-    attr_accessor :stream_size_string3
-    attr_accessor :stream_size_string4
-    attr_accessor :stream_size_string5
-    attr_accessor :stream_size_proportion
-
-    attr_accessor_alias :stream_id, :id
+    private
 
     def count=(value)
       @count = value.to_i
@@ -95,6 +104,10 @@ module MediaInfo
 
     def stream_size=(value)
       @stream_size = value.to_i
+    end
+
+    def stream_size_proportion=(value)
+      @stream_size = value.to_f
     end
   end
 end
