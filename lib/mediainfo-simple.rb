@@ -25,6 +25,12 @@ module MediaInfo
       MediaInfoParser.new(filename, self)
     end
 
+    def streams_types
+      streams.map do |stream|
+        stream.class::TYPE
+      end.uniq
+    end
+
     # return true if there is a general stream, false otherwise
     def general?
       @streams.any? { |stream| stream.is_a? GeneralStream }

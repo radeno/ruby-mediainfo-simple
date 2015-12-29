@@ -1,5 +1,7 @@
 module MediaInfo
   class MenuStream < Stream
+    TYPE = :menu
+
     attr_reader :menu_id
     attr_reader :menu_id_string
 

@@ -1,5 +1,7 @@
 module MediaInfo
   class VideoStream < Stream
+    TYPE = :video
+
     attr_reader :duration
     attr_reader :duration_string
     attr_reader :duration_string1

@@ -1,5 +1,7 @@
 module MediaInfo
   class AudioStream < Stream
+    TYPE = :audio
+
     attr_reader :duration
     attr_reader :duration_string
     attr_reader :duration_string1
@@ -39,6 +41,7 @@ module MediaInfo
     attr_reader :tagged_date
 
     private
+
     # convert from miliseconds to seconds
     def duration=(value)
       @duration = value.to_i / 1000.0

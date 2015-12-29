@@ -1,5 +1,7 @@
 module MediaInfo
   class GeneralStream < Stream
+    TYPE = :general
+
     attr_reader :general_count
     attr_reader :video_count
     attr_reader :audio_count

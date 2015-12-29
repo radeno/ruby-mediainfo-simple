@@ -1,5 +1,7 @@
 module MediaInfo
   class ImageStream < Stream
+    TYPE = :image
+
     attr_reader :width
     attr_reader :width_string
     attr_reader :height
