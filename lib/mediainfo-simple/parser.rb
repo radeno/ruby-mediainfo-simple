@@ -22,7 +22,7 @@ module MediaInfo
       # is installed at the path provided by the user
       # else, we get path with bash command `which`
       # (`which` works on Linux and Mac, but I don't know about Windows)
-      mediainfo_path = `which 'mediainfo'`.strip if mediainfo_path.nil?
+      mediainfo_path = %x(echo `which 'mediainfo'`).strip if mediainfo_path.nil?
 
       return false if mediainfo_path.blank? || !File.exist?(File.expand_path(mediainfo_path))
 
@@ -34,7 +34,7 @@ module MediaInfo
     # it returns the raw XML data
     def mediainfo_run!(filename, mediainfo_object)
       command = "#{mediainfo_path_verified} '#{filename}' --Full --Language=raw --BOM --Output=XML"
-      raw_xml_response = `#{command} 2>&1`
+      raw_xml_response = %x(echo `#{command} 2>&1`)
 
       raise RuntimeError, "Execution of `#{command}` failed: #{raw_xml_response.inspect}" unless $? == 0
 
@@ -45,15 +45,13 @@ module MediaInfo
     # and we fill the MediaInfo object attributes
     def parse!(raw_xml_response, mediainfo_object)
       # puts "#{raw_xml_response}"
-      REXML::Document.new(raw_xml_response).elements.each('/Mediainfo/File/track') { |track|
+      REXML::Document.new(raw_xml_response).elements.each('/Mediainfo/File/track') do |track|
         # we create a "Stream" object, depending on the Stream type
 
         params = {}
         # we get each tag about the stream
         track.children.select { |n| n.is_a? REXML::Element }.each do |c|
-
           tag_name = convert_element(c.name)
-
           params[tag_name.to_sym] = c.text.strip
         end
 
@@ -61,7 +59,7 @@ module MediaInfo
 
         # we add the Stream objects to the MediaInfo object
         mediainfo_object.streams << stream
-      }
+      end
     end
 
     def convert_element(tag_name)
