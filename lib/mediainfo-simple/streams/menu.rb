@@ -2,36 +2,33 @@ module MediaInfo
   class MenuStream < Stream
     TYPE = :menu
 
-    attr_reader :menu_id
-    attr_reader :menu_id_string
-
-    attr_reader :duration
-    attr_reader :duration_string
-    attr_reader :duration_string1
-    attr_reader :duration_string2
-    attr_reader :duration_string3
-    attr_reader :duration_string4
-    attr_reader :duration_string5
-    attr_reader :duration_start
-    attr_reader :duration_end
-
-    attr_reader :delay
-    attr_reader :delay_string
-    attr_reader :delay_string1
-    attr_reader :delay_string2
-    attr_reader :delay_string3
-    attr_reader :delay_string4
-    attr_reader :delay_string5
-    attr_reader :delay_settings
-    attr_reader :delay_drop_frame
-
-    attr_reader :language
-    attr_reader :language_string
-    attr_reader :language_string1
-    attr_reader :language_string2
-    attr_reader :language_string3
-    attr_reader :language_string4
-    attr_reader :language_more
+    attr_reader :menu_id,
+                :menu_id_string,
+                :duration,
+                :duration_string,
+                :duration_string1,
+                :duration_string2,
+                :duration_string3,
+                :duration_string4,
+                :duration_string5,
+                :duration_start,
+                :duration_end,
+                :delay,
+                :delay_string,
+                :delay_string1,
+                :delay_string2,
+                :delay_string3,
+                :delay_string4,
+                :delay_string5,
+                :delay_settings,
+                :delay_drop_frame,
+                :language,
+                :language_string,
+                :language_string1,
+                :language_string2,
+                :language_string3,
+                :language_string4,
+                :language_more
 
     private
 

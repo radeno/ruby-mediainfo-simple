@@ -2,43 +2,39 @@ module MediaInfo
   class AudioStream < Stream
     TYPE = :audio
 
-    attr_reader :duration
-    attr_reader :duration_string
-    attr_reader :duration_string1
-    attr_reader :duration_string2
-    attr_reader :duration_string3
-    attr_reader :duration_string4
-    attr_reader :duration_string5
+    attr_reader :duration,
+                :duration_string,
+                :duration_string1,
+                :duration_string2,
+                :duration_string3,
+                :duration_string4,
+                :duration_string5,
+                :bit_rate,
+                :bit_rate_string,
+                :bit_rate_mode,
+                :bit_rate_mode_string,
+                :bit_rate_minimum,
+                :bit_rate_minimum_string,
+                :bit_rate_nominal,
+                :bit_rate_nominal_string,
+                :bit_rate_maximum,
+                :bit_rate_maximum_string,
+                :channel_s,
+                :channel_s_string,
+                :channel_positions,
+                :channel_positions_string2,
+                :channel_layout,
+                :channel_layout_id,
+                :sampling_rate,
+                :sampling_rate_string,
+                :frame_count,
+                :compression_mode,
+                :compression_mode_string,
+                :encoded_date,
+                :tagged_date
 
-    attr_reader :bit_rate
-    attr_reader :bit_rate_string
-    attr_reader :bit_rate_mode
-    attr_reader :bit_rate_mode_string
-    attr_reader :bit_rate_minimum
-    attr_reader :bit_rate_minimum_string
-    attr_reader :bit_rate_nominal
-    attr_reader :bit_rate_nominal_string
-    attr_reader :bit_rate_maximum
-    attr_reader :bit_rate_maximum_string
-
-    attr_reader :channel_s
-    attr_reader :channel_s_string
-    attr_reader :channel_positions
-    attr_reader :channel_positions_string2
-    attr_reader :channel_layout
-    attr_reader :channel_layout_id
-    alias_method :channels, :channel_s
-    alias_method :channels_string, :channel_s_string
-
-    attr_reader :sampling_rate
-    attr_reader :sampling_rate_string
-    attr_reader :frame_count
-
-    attr_reader :compression_mode
-    attr_reader :compression_mode_string
-
-    attr_reader :encoded_date
-    attr_reader :tagged_date
+    alias channels channel_s
+    alias channels_string channel_s_string
 
     private
 

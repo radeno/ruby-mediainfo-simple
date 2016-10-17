@@ -2,10 +2,10 @@ module MediaInfo
   class GeneralStream < Stream
     TYPE = :general
 
-    attr_reader :header_size
-    attr_reader :data_size
-    attr_reader :footer_size
-    attr_reader :is_streamable
+    attr_reader :header_size,
+                :data_size,
+                :footer_size,
+                :is_streamable
 
     private
 

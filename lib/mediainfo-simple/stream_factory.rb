@@ -1,5 +1,5 @@
 module MediaInfo
-  class StreamFactory
+  module StreamFactory
     def self.create(stream_type, params)
       raise ArgumentError, "need a stream_type, received #{stream_type.inspect}" if stream_type.nil?
 
@@ -7,8 +7,7 @@ module MediaInfo
       stream_class_name = "MediaInfo::#{stream_type}Stream"
       raise "bad stream type: #{stream_type.inspect}" unless Object.const_defined?(stream_class_name)
 
-      # we return a (subclass of) Stream object
-      return Object.const_get(stream_class_name).new(params)
+      Object.const_get(stream_class_name).new(params)
     end
   end
 end

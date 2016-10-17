@@ -2,19 +2,16 @@ module MediaInfo
   class ImageStream < Stream
     TYPE = :image
 
-    attr_reader :width
-    attr_reader :width_string
-    attr_reader :height
-    attr_reader :height_string
-
-    attr_reader :color_space
-    attr_reader :chroma_subsampling
-
-    attr_reader :bit_depth
-    attr_reader :bit_depth_string
-
-    attr_reader :compression_mode
-    attr_reader :compression_mode_string
+    attr_reader :width,
+                :width_string,
+                :height,
+                :height_string,
+                :color_space,
+                :chroma_subsampling,
+                :bit_depth,
+                :bit_depth_string,
+                :compression_mode,
+                :compression_mode_string
 
     private
 
