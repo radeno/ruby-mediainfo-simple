@@ -33,7 +33,7 @@ module MediaInfo
     # we use the mediainfo command-line interface to get the XML results
     # it returns the raw XML data
     def mediainfo_run!(filename, mediainfo_object)
-      command = "#{mediainfo_path_verified} '#{filename}' --Full --Language=raw --BOM --Output=XML"
+      command = "#{mediainfo_path_verified} '#{filename.force_encoding(Encoding::UTF_8)}' --Full --Language=raw --BOM --Output=XML"
       raw_xml_response = %x(echo `#{command} 2>&1`)
 
       raise RuntimeError, "Execution of `#{command}` failed: #{raw_xml_response.inspect}" unless $? == 0

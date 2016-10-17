@@ -8,7 +8,7 @@ This gem is a wrapper for the [MediaInfo](https://mediaarea.net) command-line in
 
 How it works
 ------------
-It calls the MediaInfo command-line interface, and parses the XML output (obtained with `mediainfo file.mp4 --Output=XML`). Excepted for the MediaInfo CLI, it's 100% Ruby.
+It calls the MediaInfo command-line interface, and parses the XML output (obtained with `mediainfo file.mp4 --Full --Language=raw --BOM --Output=XML`). Excepted for the MediaInfo CLI, it's 100% Ruby.
 
 
 Installation
