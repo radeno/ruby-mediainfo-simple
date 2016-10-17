@@ -3,12 +3,13 @@ mediainfo-simple
 
 Description
 -----------
-This gem is a wrapper for the [MediaInfo](https://mediaarea.net) command-line interface.
+Rich meta informations from file. Wide formats support.
+It is just wrapper of great library MediaInfo.
 
 
 How it works
 ------------
-It calls the MediaInfo command-line interface, and parses the XML output (obtained with `mediainfo file.mp4 --Full --Language=raw --BOM --Output=XML`). Excepted for the MediaInfo CLI, it's 100% Ruby.
+It calls the MediaInfo command-line interface, and parses the XML output (obtained with `mediainfo file.mp4 --Full --Language=raw --BOM --Output=XML`).
 
 
 Installation
@@ -18,12 +19,12 @@ Installation
 
 MediaInfo CLI. Installation:
 
-* Mac OS X: `brew install mediainfo`
-* Debian / Ubuntu: `sudo apt-get install mediainfo`
+*Mac OS X: `brew install mediainfo`
+*Debian / Ubuntu: `sudo apt-get install mediainfo`
 
 ### The gem
 
-`gem install mediainfo-simple`
+Use `git@github.com:radeno/ruby-mediainfo-simple.git`
 
 
 Usage
@@ -31,7 +32,7 @@ Usage
 ```
 require 'mediainfo-simple'
 
-info = MediaInfo.new "/path/to/file"
+info = MediaInfo.new("/path/to/file").call
 ```
 
 That will issue the system call to `mediainfo` and parse the output.
@@ -50,22 +51,17 @@ info.audio[0].language  # "English"
 info.audio[1].language  # "French"
 ```
 
+# for all streams
+`info.streams`
+
 See all the metadata attributes supported for each stream type in the corresponding classes in [lib/mediainfo-simple/streams](lib/mediainfo-simple/streams).
 
 
 TODO
 ----
-* add tests
-* add methods to get duration in a particular format
+*add tests
 
 
 License
 -------
 [WTFPL](http://www.wtfpl.net/txt/copying/)
-
-Credits
--------
-Inspired by:
-
-* ["mediainfo" gem](https://github.com/greatseth/mediainfo)
-
