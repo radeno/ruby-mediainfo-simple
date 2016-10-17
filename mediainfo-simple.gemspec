@@ -1,11 +1,13 @@
 Gem::Specification.new do |s|
   s.name        = 'mediainfo-simple'
-  s.version     = '0.0.1'
-  s.date        = '2015-02-18'
-  s.summary     = 'A MediaInfo wrapper.'
-  s.description = 'A simple MediaInfo wrapper.'
-  s.authors     = ['Vincent Marquet']
-  s.files       = Dir.glob('lib/**/*.rb')
-  s.homepage    = 'http://github.com/vmarquet/ruby-mediainfo-simple'
+  s.version     = '0.1.0'
+  s.date        = '2016-10-17'
+  s.summary     = 'A simple meta information about files with MediaInfo.'
+  s.authors     = ['Radovan Šmitala', 'Vincent Marquet']
+  s.files       = Dir['lib/**/*.rb']
+  s.homepage    = 'http://github.com/radeno/ruby-mediainfo-simple'
   s.license     = 'WTFPL'
+
+  s.requirements << 'mediainfo'
+  s.required_ruby_version = '>= 2.0'
 end
