@@ -60,14 +60,19 @@ module MediaInfo
                 :stream_size_string4,
                 :stream_size_string5,
                 :stream_size_proportion
+    attr_reader :others
 
     alias stream_id id
 
     def initialize(params = {})
       klass = self.class
+      @others = {}
 
       params.each do |key, value|
-        next unless klass.method_defined?(key)
+        unless klass.method_defined?(key)
+          @others.merge!(Hash[key, value])
+          next
+        end
 
         if klass.private_method_defined?("#{key}=")
           send("#{key}=", value)
