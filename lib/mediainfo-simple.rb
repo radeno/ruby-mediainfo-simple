@@ -14,7 +14,7 @@ module MediaInfo
     attr_reader :streams
 
     def initialize(filename)
-      checkfile(filename)
+      check_file(filename)
 
       @streams = Parser.call(filename)
     end
@@ -83,8 +83,8 @@ module MediaInfo
 
     private
 
-    def checkfile(filename)
-      raise ArgumentError, "#{filename} does not exist" unless File.exist? filename
+    def check_file(file_path)
+      raise ArgumentError, "#{file_path} does not exist or is not local file" unless File.exist?(file_path)
     end
   end
 end
