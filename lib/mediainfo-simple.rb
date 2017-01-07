@@ -16,7 +16,7 @@ module MediaInfo
     def initialize(filename)
       checkfile(filename)
 
-      @streams = Parser.new.call(filename)
+      @streams = Parser.call(filename)
     end
 
     def streams_types

@@ -2,37 +2,49 @@ require 'rexml/document'
 
 module MediaInfo
   class Parser
-    attr_reader :filename
+    def self.call(file_path)
+      new.parse(file_path)
+    end
+
+    attr_reader :file_path
 
     def initialize
       # we check that MediaInfo CLI is installed
-      unless mediainfo_installed?
+      unless mediainfo_available?
         raise StandardError, 'mediainfo command-line interface not installed'
       end
     end
 
-    def call(filename)
-      command = "#{mediainfo_path} '#{filename.force_encoding(Encoding::UTF_8)}' --Full --Language=raw --BOM --Output=XML"
-      raw_xml_response = %x(echo `#{command} 2>&1`)
+    def parse(file_path)
+      @file_path = file_path
+      raw_xml_response = execute_command
 
       unless $?.success?
         raise "Execution of `#{command}` failed: #{raw_xml_response.inspect}"
       end
 
-      parse(raw_xml_response)
+      parse_response(raw_xml_response)
     end
 
     private
+
+    def command
+      "#{mediainfo_path} '#{file_path.force_encoding(Encoding::UTF_8)}' --Full --Language=raw --BOM --Output=XML"
+    end
+
+    def execute_command
+      %x(echo `#{command} 2>&1`)
+    end
 
     def mediainfo_path
       %x(echo `which 'mediainfo'`).strip
     end
 
-    def mediainfo_installed?
+    def mediainfo_available?
       !mediainfo_path.empty? && File.exist?(File.expand_path(mediainfo_path))
     end
 
-    def parse(raw_xml_response)
+    def parse_response(raw_xml_response)
       REXML::Document.new(raw_xml_response).elements.to_a('/Mediainfo/File/track').map do |track|
         selected_elements = track.children.select { |n| n.is_a? REXML::Element }
 
