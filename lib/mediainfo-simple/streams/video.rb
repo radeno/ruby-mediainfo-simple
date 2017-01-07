@@ -85,11 +85,14 @@ module MediaInfo
                 :encoded_date,
                 :tagged_date
 
+    def duration_seconds
+      duration / 1000.0
+    end
+
     private
 
-    # convert from miliseconds to seconds
     def duration=(value)
-      @duration = value.to_i / 1000.0
+      @duration = value.to_i
     end
 
     def bit_rate=(value)

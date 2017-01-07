@@ -30,20 +30,26 @@ module MediaInfo
                 :language_string4,
                 :language_more
 
+    def duration_seconds
+      duration / 1000.0
+    end
+
+    def delay_seconds
+      delay / 1000.0
+    end
+
     private
 
     def menu_id=(value)
       @menu_id = value.to_i
     end
 
-    # convert from miliseconds to seconds
     def duration=(value)
-      @duration = value.to_i / 1000.0
+      @duration = value.to_i
     end
 
-    # convert from miliseconds to seconds
     def delay=(value)
-      @delay = value.to_i / 1000.0
+      @delay = value.to_i
     end
   end
 end
