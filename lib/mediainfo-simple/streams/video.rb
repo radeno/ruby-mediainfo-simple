@@ -27,6 +27,8 @@ module MediaInfo
                 :height_string,
                 :pixel_aspect_ratio,
                 :pixel_aspect_ratio_string,
+                :resolution,
+                :resolution_string,
                 :display_aspect_ratio,
                 :display_aspect_ratio_string,
                 :rotation,
@@ -137,6 +139,10 @@ module MediaInfo
 
     def bit_depth=(value)
       @bit_depth = value.to_i
+    end
+
+    def resolution=(value)
+      @resolution = value.to_i
     end
 
     def encoded_date=(value)

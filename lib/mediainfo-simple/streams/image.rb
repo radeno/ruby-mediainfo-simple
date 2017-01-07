@@ -10,6 +10,8 @@ module MediaInfo
                 :chroma_subsampling,
                 :bit_depth,
                 :bit_depth_string,
+                :resolution,
+                :resolution_string,
                 :compression_mode,
                 :compression_mode_string
 
@@ -25,6 +27,10 @@ module MediaInfo
 
     def bit_depth=(value)
       @bit_depth = value.to_i
+    end
+
+    def resolution=(value)
+      @resolution = value.to_i
     end
   end
 end

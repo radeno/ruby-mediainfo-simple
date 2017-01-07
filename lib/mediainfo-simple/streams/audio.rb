@@ -25,6 +25,8 @@ module MediaInfo
                 :channel_positions_string2,
                 :channel_layout,
                 :channel_layout_id,
+                :resolution,
+                :resolution_string,
                 :sampling_rate,
                 :sampling_rate_string,
                 :frame_count,
@@ -64,6 +66,10 @@ module MediaInfo
 
     def channel_s=(value)
       @channel_s = value.to_i
+    end
+
+    def resolution=(value)
+      @resolution = value.to_i
     end
 
     def sampling_rate=(value)
