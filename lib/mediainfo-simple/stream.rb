@@ -33,6 +33,9 @@ module MediaInfo
                 :format_compression,
                 :format_settings,
                 :internet_media_type,
+                :codec,
+                :codec_string,
+                :codec_extensions,
                 :codec_id,
                 :codec_id_string,
                 :codec_id_info,
@@ -94,6 +97,14 @@ module MediaInfo
 
     def file_size=(value)
       @file_size = value.to_i
+    end
+
+    def format_extensions=(value)
+      @format_extensions = value.split(" ")
+    end
+
+    def codec_extensions=(value)
+      @codec_extensions = value.split(" ")
     end
 
     def stream_size=(value)
