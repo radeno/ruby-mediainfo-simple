@@ -1,3 +1,5 @@
+require 'time'
+
 module MediaInfo
   class Stream
     attr_reader :count,
@@ -102,6 +104,14 @@ module MediaInfo
 
     def file_size=(value)
       @file_size = value.to_i
+    end
+
+    def file_created_date=(value)
+      @file_modified = Time.parse(value)
+    end
+
+    def file_modified_date=(value)
+      @file_modified = Time.parse(value)
     end
 
     def format_extensions=(value)
