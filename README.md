@@ -42,9 +42,9 @@ info = MediaInfo::Base.new("/path/to/file")
 
 This downloaded file https://upload.wikimedia.org/wikipedia/commons/3/36/Hopetoun_falls.jpg example:
 ```ruby
-=> #<MediaInfo::Base:0x007fa31b1fb830
+=> #<MediaInfo::Base:0x007fb1e4946c20
  @streams=
-  [#<MediaInfo::GeneralStream:0x007fa31b9fc160
+  [#<MediaInfo::GeneralStream:0x007fb1e5bdbe08
     @codec="JPEG",
     @codec_extensions=["jpeg", "jpg", "jpe"],
     @codec_string="JPEG",
@@ -78,7 +78,7 @@ This downloaded file https://upload.wikimedia.org/wikipedia/commons/3/36/Hopetou
     @stream_size_string3="0.00 Byte1",
     @stream_size_string4="0.000 Byte1",
     @stream_size_string5="0.00 Byte1 (0%)">,
-   #<MediaInfo::ImageStream:0x007fa31a197f70
+   #<MediaInfo::ImageStream:0x007fb1e5b498c8
     @bit_depth=8,
     @bit_depth_string="8 bit3",
     @chroma_subsampling="4:4:4",
@@ -93,7 +93,9 @@ This downloaded file https://upload.wikimedia.org/wikipedia/commons/3/36/Hopetou
     @height=2048,
     @height_string="2048 pixel3",
     @internet_media_type="image/jpeg",
-    @others={:resolution=>"8", :resolution_string=>"8 bit3"},
+    @others={},
+    @resolution=8,
+    @resolution_string="8 bit3",
     @stream_count=1,
     @stream_kind="Image",
     @stream_kind_id=0,
