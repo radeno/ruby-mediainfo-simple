@@ -115,11 +115,11 @@ module MediaInfo
     end
 
     def format_extensions=(value)
-      @format_extensions = value.split(" ")
+      @format_extensions = value.split(split_delimiter)
     end
 
     def codec_extensions=(value)
-      @codec_extensions = value.split(" ")
+      @codec_extensions = value.split(split_delimiter)
     end
 
     def stream_size=(value)
@@ -128,6 +128,10 @@ module MediaInfo
 
     def stream_size_proportion=(value)
       @stream_size_proportion = value.to_f
+    end
+
+    def split_delimiter
+      /[\s,']/
     end
   end
 end
