@@ -1,3 +1,5 @@
+# Separate to Streams and Attributes defined in https://github.com/MediaArea/MediaInfoLib/blob/master/Source/MediaInfo/File__Analyse_Automatic.h
+
 require 'time'
 
 module MediaInfo
@@ -16,14 +18,6 @@ module MediaInfo
                 :id_string,
                 :unique_id,
                 :unique_id_string,
-                :complete_name,
-                :folder_name,
-                :file_name,
-                :file_extension,
-                :complete_name_last,
-                :folder_name_last,
-                :file_name_last,
-                :file_extension_last,
                 :format,
                 :format_info,
                 :format_url,
@@ -44,16 +38,6 @@ module MediaInfo
                 :codec_id_hint,
                 :codec_id_url,
                 :codec_id_description,
-                :file_size,
-                :file_size_string,
-                :file_size_string1,
-                :file_size_string2,
-                :file_size_string3,
-                :file_size_string4,
-                :file_created_date,
-                :file_created_date_local,
-                :file_modified_date,
-                :file_modified_date_local,
                 :stream_size,
                 :stream_size_string,
                 :stream_size_string1,
@@ -100,18 +84,6 @@ module MediaInfo
 
     def first_packet_order=(value)
       @first_packet_order = value.to_i
-    end
-
-    def file_size=(value)
-      @file_size = value.to_i
-    end
-
-    def file_created_date=(value)
-      @file_modified = Time.parse(value)
-    end
-
-    def file_modified_date=(value)
-      @file_modified = Time.parse(value)
     end
 
     def format_extensions=(value)
