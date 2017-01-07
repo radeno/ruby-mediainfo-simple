@@ -114,12 +114,16 @@ This downloaded file https://upload.wikimedia.org/wikipedia/commons/3/36/Hopetou
 
 ```ruby
 # check if there is a stream of some type
-info.video?        # true
-info.audio?        # true
-info.image?        # false
+info.video?        # false
+info.audio?        # false
+info.image?        # true
+info.text?         # false
+
+# get streams by type
+info.{general|image|audio|video|text|menu|other}
 
 # check the number of streams of some type
-info.audio.count   # 2
+info.audio.size   # 2
 
 # get metadata about a stream
 info.audio[0].language  # "English"
