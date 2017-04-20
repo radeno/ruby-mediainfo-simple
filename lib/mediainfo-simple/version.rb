@@ -1,14 +1,10 @@
-class MediaInfo
-  def self.version
-    Gem::Version.new VERSION::STRING
-  end
-
-  module VERSION
+module MediaInfo
+  module Version
     MAJOR = 0
     MINOR = 1
-    TINY  = 1
+    TINY  = 2
     PRE   = nil
 
-    STRING = [MAJOR, MINOR, TINY, PRE].compact.join('.')
+    NUMBER = [MAJOR, MINOR, TINY, PRE].compact.join('.')
   end
 end

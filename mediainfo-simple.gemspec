@@ -1,8 +1,8 @@
-require File.expand_path("../lib/mediainfo-simple/version", __FILE__)
+require File.expand_path('../lib/mediainfo-simple/version', __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = 'mediainfo-simple'
-  s.version     = MediaInfo.version
+  s.version     = Gem::Version.new(MediaInfo::Version::NUMBER)
 
   s.summary     = 'A simple meta information about files with MediaInfo.'
   s.authors     = ['Radovan Smitala', 'Vincent Marquet']
