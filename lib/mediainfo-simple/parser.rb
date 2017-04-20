@@ -1,69 +1,75 @@
 require 'rexml/document'
+require 'mediainfo-simple/stream_factory'
 
 module MediaInfo
   class Parser
     def self.call(file_path)
-      new.parse(file_path)
+      new(file_path).parse
     end
 
     attr_reader :file_path
 
-    def initialize
-      # we check that MediaInfo CLI is installed
-      unless mediainfo_available?
-        raise StandardError, 'mediainfo command-line interface not installed'
-      end
+    def initialize(file_path)
+      @file_path = file_path
+
+      # check for MediaInfo CLI
+      raise StandardError, 'mediainfo command-line interface not installed' unless cli_available?
     end
 
-    def parse(file_path)
-      @file_path = file_path
+    def parse
       raw_xml_response = execute_command
 
-      unless $?.success?
-        raise "Execution of `#{command}` failed: #{raw_xml_response.inspect}"
-      end
+      raise "Execution of `#{command}` failed: #{raw_xml_response.inspect}" unless $?.success?
 
-      parse_response(raw_xml_response)
+      create_streams(raw_xml_response)
     end
 
     private
 
     def command
-      "#{mediainfo_path} '#{file_path.force_encoding(Encoding::UTF_8)}' --Full --Language=raw --BOM --Output=XML"
+      "#{cli_path} '#{file_path}' --Full --Language=raw --BOM --Output=XML"
     end
 
     def execute_command
       %x(echo `#{command} 2>&1`)
     end
 
-    def mediainfo_path
-      %x(echo `which 'mediainfo'`).strip
+    def cli_path
+      %x(echo `which mediainfo`).strip
     end
 
-    def mediainfo_available?
-      !mediainfo_path.empty? && File.exist?(File.expand_path(mediainfo_path))
+    def cli_available?
+      !cli_path.empty? && File.exist?(File.expand_path(cli_path))
     end
 
-    def parse_response(raw_xml_response)
-      REXML::Document.new(raw_xml_response).elements.to_a('/Mediainfo/File/track').map do |track|
-        selected_elements = track.children.select { |n| n.is_a? REXML::Element }
-
-        elements = selected_elements.each_with_object({}) do |element, memo|
-          tag_name = convert_element(element.name).to_sym
-          memo[tag_name] = element.text.strip
-        end.to_h
+    def create_streams(raw_xml_response)
+      parse_xml_tracks(raw_xml_response).map do |track|
+        elements = make_elements_hash(
+          track.children.select { |child| child.is_a? REXML::Element }
+        )
 
         StreamFactory.create(track.attributes['type'], elements)
       end
     end
 
-    def convert_element(tag_name)
-      # we convert the tag name to a ruby-attribute-compatible name
-      tag_name = tag_name.strip # remove whitespaces at the beginning and the end
-      # we replace characters forbidden in Ruby method names by '_':
-      tag_name = tag_name.gsub(/[\(\)\{\}\[\]\*\/\\,;\.:\+=\-\^\$\!\?\|@#\&"'`]+/, '_')
-      tag_name = tag_name.gsub(/(.)([A-Z])/, '\1_\2') # add underscore between capital case
-      tag_name = tag_name.gsub(/_+/, '_') # we replace several '_' following by a single one
+    def parse_xml_tracks(raw_xml)
+      REXML::Document.new(raw_xml).elements.to_a('/Mediainfo/File/track')
+    end
+
+    def make_elements_hash(children)
+      children.each_with_object({}) do |element, memo|
+        tag_name = convert_element_name(element.name).to_sym
+        memo[tag_name] = element.text.strip
+      end
+    end
+
+    # Convert MediaInfo attribute name to Ruby style
+    # eg: Image_Format_WithHint_List to image_format_with_hint_list
+    def convert_element_name(tag_name)
+      # add underscore between capital case
+      tag_name = tag_name.gsub(/(.)([A-Z])/, '\1_\2')
+      # replace several '_' following by a single one
+      tag_name = tag_name.gsub(/_+/, '_')
       tag_name = tag_name.downcase
 
       tag_name

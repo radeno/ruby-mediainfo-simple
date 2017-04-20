@@ -1,3 +1,5 @@
+require 'mediainfo-simple/stream'
+
 module MediaInfo
   class OtherStream < Stream
     TYPE = :other

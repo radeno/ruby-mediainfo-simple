@@ -1,13 +1,4 @@
 require 'mediainfo-simple/parser'
-require 'mediainfo-simple/stream_factory'
-require 'mediainfo-simple/stream'
-require 'mediainfo-simple/streams/audio'
-require 'mediainfo-simple/streams/video'
-require 'mediainfo-simple/streams/text'
-require 'mediainfo-simple/streams/image'
-require 'mediainfo-simple/streams/general'
-require 'mediainfo-simple/streams/menu'
-require 'mediainfo-simple/streams/other'
 
 module MediaInfo
   class Base
@@ -26,62 +17,70 @@ module MediaInfo
     end
 
     def general?
-      streams.any? { |stream| stream.is_a? GeneralStream }
+      stream?(:general)
     end
 
     def video?
-      streams.any? { |stream| stream.is_a? VideoStream }
+      stream?(:video)
     end
 
     def audio?
-      streams.any? { |stream| stream.is_a? AudioStream }
+      stream?(:audio)
     end
 
     def text?
-      streams.any? { |stream| stream.is_a? TextStream }
+      stream?(:text)
     end
 
     def image?
-      streams.any? { |stream| stream.is_a? ImageStream }
+      stream?(:image)
     end
 
     def menu?
-      streams.any? { |stream| stream.is_a? MenuStream }
+      stream?(:menu)
     end
 
     def other?
-      streams.any? { |stream| stream.is_a? OtherStream }
+      stream?(:other)
     end
 
     def general
-      streams.select { |stream| stream.is_a? GeneralStream }
+      search_stream(:general)
     end
 
     def video
-      streams.select { |stream| stream.is_a? VideoStream }
+      search_stream(:video)
     end
 
     def audio
-      streams.select { |stream| stream.is_a? AudioStream }
+      search_stream(:audio)
     end
 
     def text
-      streams.select { |stream| stream.is_a? TextStream }
+      search_stream(:text)
     end
 
     def image
-      streams.select { |stream| stream.is_a? ImageStream }
+      search_stream(:image)
     end
 
     def menu
-      streams.select { |stream| stream.is_a? MenuStream }
+      search_stream(:menu)
     end
 
     def other
-      streams.select { |stream| stream.is_a? OtherStream }
+      search_stream(:other)
     end
 
     private
+
+    def stream?(type)
+      streams.any? { |stream| stream.class::TYPE == type }
+    end
+
+    def search_stream(type)
+      streams.select { |stream| stream.class::TYPE == type }
+    end
 
     def check_file(file_path)
       raise ArgumentError, "#{file_path} does not exist or is not local file" unless File.exist?(file_path)

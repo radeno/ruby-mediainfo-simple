@@ -1,4 +1,5 @@
-# Separate to Streams and Attributes defined in https://github.com/MediaArea/MediaInfoLib/blob/master/Source/MediaInfo/File__Analyse_Automatic.h
+# Separate to Streams and Attributes defined in
+# https://github.com/MediaArea/MediaInfoLib/blob/master/Source/MediaInfo/File__Analyse_Automatic.h
 
 require 'time'
 
@@ -45,22 +46,21 @@ module MediaInfo
                 :stream_size_string3,
                 :stream_size_string4,
                 :stream_size_string5,
-                :stream_size_proportion
-    attr_reader :others
+                :stream_size_proportion,
+                :others
 
     alias stream_id id
 
     def initialize(params = {})
-      klass = self.class
       @others = {}
 
       params.each do |key, value|
-        unless klass.method_defined?(key)
+        unless respond_to?(key)
           @others.merge!(Hash[key, value])
           next
         end
 
-        if klass.private_method_defined?("#{key}=")
+        if respond_to?("#{key}=", true)
           send("#{key}=", value)
         else
           instance_variable_set("@#{key}", value)

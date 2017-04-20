@@ -1,3 +1,5 @@
+require 'mediainfo-simple/stream'
+
 module MediaInfo
   class MenuStream < Stream
     TYPE = :menu

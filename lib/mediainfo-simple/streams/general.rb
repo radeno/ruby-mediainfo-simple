@@ -1,3 +1,5 @@
+require 'mediainfo-simple/stream'
+
 module MediaInfo
   class GeneralStream < Stream
     TYPE = :general
