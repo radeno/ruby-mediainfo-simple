@@ -47,16 +47,16 @@ module MediaInfo
                 :stream_size_string4,
                 :stream_size_string5,
                 :stream_size_proportion,
-                :others
+                :_others
 
     alias stream_id id
 
     def initialize(params = {})
-      @others = {}
+      @_others = {}
 
       params.each do |key, value|
         unless respond_to?(key)
-          @others.merge!(Hash[key, value])
+          @_others.merge!(Hash[key, value])
           next
         end
 

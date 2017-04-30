@@ -10,9 +10,9 @@ MediaInfo is format and attribute-rich tool. More info at [https://mediaarea.net
 How it works
 ------------
 It calls the MediaInfo command-line interface, and parses the XML output (obtained with `mediainfo file.mp4 --Full --Language=raw --BOM --Output=XML`).
-Almost every MediaInfo attribute is mapped and converted to appropriate Ruby naming style and data format.
+Almost every MediaInfo raw attribute is associated and converted to appropriate Ruby naming style and data format.
 
-See all the metadata attributes supported for each stream type in the corresponding classes in [lib/media_info/streams](lib/mediainfo-simple/streams).
+See all the metadata attributes supported for each stream type in the corresponding classes in [lib/media_info/streams](lib/media_info/streams).
 
 Undefined attributes returned by MediaInfo are accessable by method ".others"
 
@@ -29,7 +29,7 @@ MediaInfo CLI. Installation:
 
 ### The gem
 
-Use `git@github.com:radeno/ruby-mediainfo-simple.git`
+Use `git@github.com:radeno/media_info.git`
 
 
 Usage
@@ -65,7 +65,6 @@ This downloaded file https://upload.wikimedia.org/wikipedia/commons/3/36/Hopetou
     @format_commercial="JPEG",
     @format_extensions=["jpeg", "jpg", "jpe"],
     @internet_media_type="image/jpeg",
-    @others={:image_count=>"1", :image_format_list=>"JPEG", :image_format_with_hint_list=>"JPEG", :image_codec_list=>"JPEG", :format_string=>"JPEG"},
     @stream_count=1,
     @stream_kind="General",
     @stream_kind_id=0,
@@ -77,7 +76,8 @@ This downloaded file https://upload.wikimedia.org/wikipedia/commons/3/36/Hopetou
     @stream_size_string2="0.0 Byte1",
     @stream_size_string3="0.00 Byte1",
     @stream_size_string4="0.000 Byte1",
-    @stream_size_string5="0.00 Byte1 (0%)">,
+    @stream_size_string5="0.00 Byte1 (0%)",
+    @_others={:image_count=>"1", :image_format_list=>"JPEG", :image_format_with_hint_list=>"JPEG", :image_codec_list=>"JPEG", :format_string=>"JPEG"}>,
    #<MediaInfo::ImageStream:0x007fb1e5b498c8
     @bit_depth=8,
     @bit_depth_string="8 bit3",
@@ -93,7 +93,6 @@ This downloaded file https://upload.wikimedia.org/wikipedia/commons/3/36/Hopetou
     @height=2048,
     @height_string="2048 pixel3",
     @internet_media_type="image/jpeg",
-    @others={},
     @resolution=8,
     @resolution_string="8 bit3",
     @stream_count=1,
@@ -109,8 +108,11 @@ This downloaded file https://upload.wikimedia.org/wikipedia/commons/3/36/Hopetou
     @stream_size_string4="2.817 MiB",
     @stream_size_string5="2.82 MiB (100%)",
     @width=3072,
-    @width_string="3072 pixel2">]>
+    @width_string="3072 pixel2",
+    @_others={}>]>
 ```
+
+New or unmapped Mediainfo attributes are available by "_others".
 
 ```ruby
 # check if there is a stream of some type
