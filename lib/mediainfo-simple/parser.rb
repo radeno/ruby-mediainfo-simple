@@ -1,3 +1,4 @@
+require 'English'
 require 'rexml/document'
 require 'mediainfo-simple/stream_factory'
 
@@ -19,7 +20,7 @@ module MediaInfo
     def parse
       raw_xml_response = execute_command
 
-      raise "Execution of `#{command}` failed: #{raw_xml_response.inspect}" unless $?.success?
+      raise "Execution of `#{command}` failed: #{raw_xml_response.inspect}" unless $CHILD_STATUS.success?
 
       create_streams(raw_xml_response)
     end
