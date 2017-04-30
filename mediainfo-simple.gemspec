@@ -5,9 +5,9 @@ Gem::Specification.new do |s|
   s.version     = Gem::Version.new(MediaInfo::Version::NUMBER)
 
   s.summary     = 'A simple meta information about files with MediaInfo.'
-  s.authors     = ['Radovan Smitala', 'Vincent Marquet']
   s.homepage    = 'http://github.com/radeno/ruby-mediainfo-simple'
-  s.license     = 'WTFPL'
+  s.authors     = ['Radovan Smitala']
+  s.license     = 'MIT'
 
   s.files         = Dir['lib/**/*.rb']
   s.require_paths = ['lib']
