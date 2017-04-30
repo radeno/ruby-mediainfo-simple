@@ -1,4 +1,4 @@
 require 'bundler/setup'
 require 'minitest/autorun'
 
-require 'mediainfo'
+require 'media_info'

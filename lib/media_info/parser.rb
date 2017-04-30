@@ -1,6 +1,6 @@
 require 'English'
 require 'rexml/document'
-require 'mediainfo-simple/stream_factory'
+require 'media_info/stream_factory'
 
 module MediaInfo
   class Parser

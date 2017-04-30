@@ -1,7 +1,7 @@
-require File.expand_path('../lib/mediainfo-simple/version', __FILE__)
+require File.expand_path('../lib/media_info/version', __FILE__)
 
 Gem::Specification.new do |s|
-  s.name        = 'mediainfo-simple'
+  s.name        = 'media_info'
   s.version     = Gem::Version.new(MediaInfo::Version::NUMBER)
 
   s.summary     = 'A simple meta information about files with MediaInfo.'
@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'bundler'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'minitest'
+  s.add_development_dependency 'pry'
 
   s.add_development_dependency 'reek'
   s.add_development_dependency 'rubocop'

@@ -1,4 +1,4 @@
-require 'mediainfo-simple/stream'
+require 'media_info/stream'
 
 module MediaInfo
   class OtherStream < Stream

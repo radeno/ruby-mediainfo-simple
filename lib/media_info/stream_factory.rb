@@ -1,10 +1,10 @@
-require 'mediainfo-simple/streams/audio'
-require 'mediainfo-simple/streams/video'
-require 'mediainfo-simple/streams/text'
-require 'mediainfo-simple/streams/image'
-require 'mediainfo-simple/streams/general'
-require 'mediainfo-simple/streams/menu'
-require 'mediainfo-simple/streams/other'
+require 'media_info/streams/audio'
+require 'media_info/streams/video'
+require 'media_info/streams/text'
+require 'media_info/streams/image'
+require 'media_info/streams/general'
+require 'media_info/streams/menu'
+require 'media_info/streams/other'
 
 module MediaInfo
   module StreamFactory

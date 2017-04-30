@@ -1,4 +1,4 @@
-mediainfo-simple
+media_info
 ================
 
 Description
@@ -12,7 +12,7 @@ How it works
 It calls the MediaInfo command-line interface, and parses the XML output (obtained with `mediainfo file.mp4 --Full --Language=raw --BOM --Output=XML`).
 Almost every MediaInfo attribute is mapped and converted to appropriate Ruby naming style and data format.
 
-See all the metadata attributes supported for each stream type in the corresponding classes in [lib/mediainfo-simple/streams](lib/mediainfo-simple/streams).
+See all the metadata attributes supported for each stream type in the corresponding classes in [lib/media_info/streams](lib/mediainfo-simple/streams).
 
 Undefined attributes returned by MediaInfo are accessable by method ".others"
 
@@ -35,7 +35,7 @@ Use `git@github.com:radeno/ruby-mediainfo-simple.git`
 Usage
 -----
 ```ruby
-require 'mediainfo-simple'
+require 'media_info'
 
 info = MediaInfo::Base.new("/path/to/file")
 ```
@@ -140,4 +140,4 @@ TODO
 
 License
 -------
-[WTFPL](http://www.wtfpl.net/txt/copying/)
+[MIT](https://opensource.org/licenses/MIT)

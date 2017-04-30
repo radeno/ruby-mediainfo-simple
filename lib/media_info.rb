@@ -1,4 +1,4 @@
-require 'mediainfo-simple/parser'
+require 'media_info/parser'
 
 module MediaInfo
   class Base

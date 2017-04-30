@@ -1,1 +1,0 @@
-require 'mediainfo_simple'
