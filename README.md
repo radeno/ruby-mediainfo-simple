@@ -136,12 +136,18 @@ info.audio[0].language  # "English"
 info.audio[1].language  # "French"
 ```
 
+All remapped and not processed attributes are accesible throuh `raw_attributes` method.
+
+```ruby
+info.audio[0].raw_attributes
+```
+
 # for all streams
 `info.streams`
 
 TODO
 ----
-*add tests
+*add more tests
 
 
 License
