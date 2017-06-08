@@ -27,10 +27,10 @@ MediaInfo CLI. Installation:
 * Mac OS X: `brew install mediainfo`
 * Debian / Ubuntu: `sudo apt-get install mediainfo`
 
-### The gem
+### Gem
 
-Gem: `gem install media_info`
-Git: `git@github.com:radeno/media_info.git`
+* Gem: `gem install media_info`
+* Git: `git@github.com:radeno/media_info.git`
 
 
 Usage
