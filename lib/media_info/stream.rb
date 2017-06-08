@@ -53,6 +53,7 @@ module MediaInfo
 
     def initialize(params = {})
       @_others = {}
+      @raw = params
 
       params.each do |key, value|
         unless respond_to?(key)
@@ -66,6 +67,10 @@ module MediaInfo
           instance_variable_set("@#{key}", value)
         end
       end
+    end
+
+    def raw
+      @raw
     end
 
     private
