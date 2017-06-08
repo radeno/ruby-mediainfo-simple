@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.version     = Gem::Version.new(MediaInfo::Version::NUMBER)
 
   s.summary     = 'A simple meta information about files with MediaInfo.'
-  s.homepage    = 'http://github.com/radeno/ruby-mediainfo-simple'
+  s.homepage    = 'http://github.com/radeno/media_info'
   s.authors     = ['Radovan Smitala']
   s.license     = 'MIT'
 

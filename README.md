@@ -37,6 +37,10 @@ Usage
 ```ruby
 require 'media_info'
 
+info = MediaInfo.parse("/path/to/file")
+```
+or direct
+```ruby
 info = MediaInfo::Base.new("/path/to/file")
 ```
 
