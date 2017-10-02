@@ -126,24 +126,35 @@ info.audio?        # false
 info.image?        # true
 info.text?         # false
 
-# get streams by type
+# get stream infos by type
+info.{generals|images|audios|videos|texts|menus|others}
+# it return array
+```
+
+In most cases are streams in size of 1. So there are helpers which returns first element in array
+```
 info.{general|image|audio|video|text|menu|other}
+```
+By design of MediaInfo is general stream always available.
 
-# check the number of streams of some type
-info.audio.size   # 2
+Check the number of streams of some type
+```
+info.audios.size # 2
+```
 
-# get metadata about a stream
-info.audio[0].language  # "English"
-info.audio[1].language  # "French"
+Get metadata about a stream
+```
+info.audio.language # "English"
+info.audio.language # "French"
 ```
 
 All remapped and not processed attributes are accesible throuh `raw_attributes` method.
 
 ```ruby
-info.audio[0].raw_attributes
+info.audios[0].raw_attributes
 ```
 
-# for all streams
+# Getting all streams
 `info.streams`
 
 TODO

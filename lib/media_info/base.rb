@@ -42,32 +42,60 @@ module MediaInfo
       stream?(:other)
     end
 
-    def general
+    def generals
       search_stream(:general)
     end
 
-    def video
+    def videos
       search_stream(:video)
     end
 
-    def audio
+    def audios
       search_stream(:audio)
     end
 
-    def text
+    def texts
       search_stream(:text)
     end
 
-    def image
+    def images
       search_stream(:image)
     end
 
-    def menu
+    def menus
       search_stream(:menu)
     end
 
-    def other
+    def others
       search_stream(:other)
+    end
+
+    def general
+      generals.first
+    end
+
+    def video
+      videos.first
+    end
+
+    def audio
+      audios.first
+    end
+
+    def text
+      texts.first
+    end
+
+    def image
+      images.first
+    end
+
+    def menu
+      menus.first
+    end
+
+    def other
+      others.first
     end
 
     private

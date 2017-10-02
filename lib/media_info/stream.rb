@@ -53,7 +53,7 @@ module MediaInfo
 
     def initialize(params = {})
       @_others = {}
-      @raw_attributes = params
+      @_raw = params
 
       params.each do |key, value|
         unless respond_to?(key)
@@ -70,7 +70,7 @@ module MediaInfo
     end
 
     def raw_attributes
-      @raw_attributes
+      @_raw
     end
 
     private
