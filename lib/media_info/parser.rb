@@ -54,7 +54,7 @@ module MediaInfo
     end
 
     def parse_xml_tracks(raw_xml)
-      REXML::Document.new(raw_xml).elements.to_a('/MediaInfo/media/track')
+      REXML::Document.new(raw_xml).elements.to_a('//track')
     end
 
     def make_elements_hash(children)
